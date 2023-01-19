@@ -28,6 +28,30 @@
   color: #61dafb;
 }
 
+.Header {
+  display:flex;
+  flex-direction: row;
+  color: blue;
+  justify-content: space-between;
+}
+
+.Navigation {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 20vw;
+  justify-content: space-between;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.Nav-link {
+  border: 2px solid black;
+  padding: 5px;
+  width: 15vw;
+  
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
