@@ -33,6 +33,7 @@
   flex-direction: row;
   color: blue;
   justify-content: space-between;
+  border: 2px solid black;
 }
 
 .Navigation {
@@ -50,6 +51,41 @@
   padding: 5px;
   width: 15vw;
   
+}
+
+.pizzatext {
+  font-size: xx-large;
+  justify-self: center;
+}
+
+.img {
+  height: 35vh;
+  object-fit: cover;
+  width: 100vw;
+}
+
+.image {
+  text-align: center;
+  position: relative;
+  background-image: url("./MainPizza.jpg");
+  height: 300px;
+  width: 100vw;
+  background-size: cover;
+  display: flex;
+  color: white;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.imgButton {
+ border: solid 2px black;
+ width: 120px;
+ height: 50px;
+ align-self: center;
+}
+
+.Title {
+  padding-left: 5vw;
 }
 
 @keyframes App-logo-spin {
