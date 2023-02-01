@@ -1,6 +1,9 @@
 import Mcdonalds from "./FoodPics/Mcdonalds.png";
 import Wendys from "./FoodPics/wendys.png";
-import Panda from "./FoodPics/"
+import Panda from "./FoodPics/panda.jpg";
+import TacoBell from "./FoodPics/tacobell.png";
+import BurgerKing from "./FoodPics/burgerking.png";
+import Whataburger from "./FoodPics/whataburger.jpg";
 
 const FoodStuffs = [
     {
@@ -14,22 +17,22 @@ const FoodStuffs = [
         type: "Fast Food"
     },
     {
-        picture: "./FoodPics/panda.jpg",
+        picture: Panda,
         name: "Panda Express",
         type: "Fast Food"
     },
     {
-        picture: "./FoodPics/tacobell.png",
+        picture: TacoBell,
         name: "Taco Bell",
         type: "Fast Food"
     },
     {
-        picture: "./FoodPics/burgerking.png",
+        picture: BurgerKing,
         name: "Burger King",
         type: "Fast Food"
     },
     {
-        picture: "./FoodPics/whataburger.jpg",
+        picture: Whataburger,
         name: "Whataburger",
         type: "Fast Food"
     }
