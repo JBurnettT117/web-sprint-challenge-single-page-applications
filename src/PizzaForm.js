@@ -28,16 +28,8 @@ const PizzaForm = () => {
             });
         });
         setName(value);
-        setForm({...form,name: name});
-        console.log(errors);
+        setForm({...form,name: value});
     }
-
-    // useEffect(() => {
-    //     Yup.reach(formSchema, name).validate(value)
-    //     });
-    // }, [name])
-
-    // const [ toppings, setToppings ] = useState([]);
 
     const toppingsHandler = event => {
         if(
@@ -49,17 +41,35 @@ const PizzaForm = () => {
         }
     }
 
-    const [ errors, setErrors ] = useState({name: ""})
+    const [ errors, setErrors ] = useState({name: ""})    
 
-    const initialState= {size:"", sauce:"", Toppings: [], Glutenfree:"", specialtext:"", name:""}
+    const [ gluten, setGluten ] = useState(true);
+
+    const glutenHandler = () => {
+        setGluten(!gluten);
+        setForm({...form, Glutenfree: gluten})
+    }
+
+    const initialState= {size:"", sauce:"", Toppings: [], Glutenfree: false, specialtext:"", name:""}
 
     const [ form, setForm ] = useState(initialState);
 
-    //put internet thing here
-
     const submitHandler = (event) => {
         event.preventDefault();
-        axios.post("https://reqres.in/api/orders", form);
+        var selectedSize = document.getElementById('size-dropdown').value;
+        console.log(selectedSize);
+        var sauces = document.getElementsByName("sauce");
+        for(let i = 0; i < sauces.length; i++){
+            if(sauces[i].checked === true){
+                var selectedSauce = sauces[i].value;
+            }
+        };
+        console.log(selectedSauce);
+        const completedForm = {...form, sauce: selectedSauce, size: selectedSize};
+        console.log(completedForm);
+        axios.post("https://reqres.in/api/orders", completedForm).then((response)=> {
+            console.log(response)
+        })
     }
 
       return(
@@ -79,11 +89,11 @@ const PizzaForm = () => {
                 <label >Choice of Sauce<br/><span>Required</span><br/>
                     <input id="Original Red" type="radio" name="sauce" value="Original Red"/>
                     <label htmlFor="Original Red">Original Red</label><br/>
-                    <input type="radio" name="sauce" value="Garlic Ranch"/>
+                    <input id="Garlic Ranch" type="radio" name="sauce" value="Garlic Ranch"/>
                     <label htmlFor="Garlic Ranch">Garlic Ranch</label><br/>
-                    <input type="radio" name="sauce" value="BBQ Sauce"/>
+                    <input id="BBQ Sauce" type="radio" name="sauce" value="BBQ Sauce"/>
                     <label htmlFor="BBQ Sauce">BBQ Sauce</label><br/>
-                    <input type="radio" name="sauce" value="Spinach Alfredo"/>
+                    <input id="Spinach Alfredo" type="radio" name="sauce" value="Spinach Alfredo"/>
                     <label htmlFor="Spinach Alfredo">Spinach Alfredo</label><br/>
                 </label>
                 <label>Add Toppings<br/><span>Choose up to 10</span><br/>
@@ -118,7 +128,7 @@ const PizzaForm = () => {
                 </label>
                 <label>Choice of Substitute<br/><span>Choose up to 1</span><br/>
                     <label className="switch">
-                        <input type="checkbox"/><span className="slider" name="Glutenfree"></span>
+                        <input type="checkbox" onChange={glutenHandler}/><span className="slider" name="Glutenfree"></span>
                     </label>
                     Gluten Free Crust (+1.00)<br/>
                 </label>
